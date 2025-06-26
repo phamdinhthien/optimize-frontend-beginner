@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Critical Rendering Path</title>
+    <link rel="stylesheet" href="http://localhost:3000/style.css">
+    <script src="http://localhost:3000/script.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Demo Critical Rendering Path</h1>
+        <p>Sử dụng DevTools để quan sát CRP!</p>
+    </header>
+
+    <main class="main-content">
+        <section class="intro">
+            <h2>Browser Rendering Pipeline:</h2>
+            <ol>
+                <li><strong>Parse HTML</strong> → Chuyển đổi HTML thành <strong>DOM</strong></li>
+                <li><strong>Parse CSS</strong> → Chuyển đổi CSS thành <strong>CSSOM</strong></li>
+                <li><strong>Render Tree</strong> → Kết hợp DOM và CSSOM</li>
+                <li><strong>Layout</strong> → Tính toán vị trí, kích thước (Box Model)</li>
+                <li><strong>Paint</strong> → Xác định cách vẽ các phần tử</li>
+                <li><strong>Layerize</strong> → Tạo Layer Tree</li>
+                <li><strong>Commit</strong> → Chuyển thông tin xuống Compositor Thread</li>
+                <li><strong>Compositor Thread</strong> → GPU process vẽ lên màn hình</li>
+            </ol>
+        </section>
+
+        <section class="demo-section">
+            <h2>Demo Elements</h2>
+            <div class="box-container">
+                <div class="box box-1" id="box1">Box 1</div>
+                <div class="box box-2" id="box2">Box 2</div>
+                <div class="box box-3" id="box3">Box 3</div>
+            </div>
+            
+            <div class="controls">
+                <button onclick="triggerReflow()">Trigger Reflow</button>
+                <button onclick="triggerRepaint()">Trigger Repaint</button>
+                <button onclick="addElement()">Add Element</button>
+            </div>
+        </section>
+
+        <section class="pipeline-details">
+            <h2>Quan sát với DevTools:</h2>
+            <ul>
+                <li><strong>Performance Tab:</strong> Xem timeline rendering pipeline</li>
+                <li><strong>Network Tab:</strong> Quan sát thứ tự tải HTML, CSS, JS</li>
+                <li><strong>Rendering Tab:</strong> Highlight layout, paint, composite layers</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 - Demo CRP cho DevTools</p>
+    </footer>
+
+    
+</body>
+</html>
