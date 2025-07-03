@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  nginx-compression-demo:
+    image: nginx:alpine
+    # image: fholzer/nginx-brotli
+    container_name: nginx-compression-demo
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./public:/usr/share/nginx/html
+      - ./logs:/var/log/nginx
+    restart: unless-stopped
+    
+  # Optional: Service để theo dõi logs
+  log-viewer:
+    image: alpine
+    container_name: nginx-logs
+    volumes:
+      - ./logs:/logs
+    command: tail -f /logs/compression.log
+    depends_on:
+      - nginx-compression-demo
+    profiles:
+      - logs

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- <div class="home"> -->
     <div class="hero">
       <h1>Chào mừng đến với Vue3 Code Split Demo</h1>
       <p class="hero-text">
@@ -25,68 +26,8 @@
         </div>
       </div>
     </div>
-
-    <div class="demo-section">
-      <h2>Demo Code Splitting</h2>
-      <div class="demo-actions">
-        <router-link to="/product" class="btn btn-primary">
-          Đi đến trang Sản phẩm (Route Code Split)
-        </router-link>
-        <button @click="showModal" class="btn btn-secondary">
-          Mở Popup Thêm Sản phẩm (Component Code Split)
-        </button>
-      </div>
-    </div>
-
-    <!-- Async Component sẽ được render ở đây -->
-    <component 
-      v-if="modalComponent" 
-      :is="modalComponent" 
-      @close="closeModal"
-    />
   </div>
 </template>
-
-<script>
-import { ref, defineAsyncComponent } from 'vue'
-
-export default {
-  name: 'Home',
-  setup() {
-    const modalComponent = ref(null)
-
-    const showModal = async () => {
-      // Lazy loading component - chỉ tải khi cần
-      modalComponent.value = defineAsyncComponent({
-        loader: () => import('../components/ProductModal.vue'),
-        loadingComponent: {
-          template: `
-            <div class="loading">
-              <div class="spinner"></div>
-              Đang tải popup...
-            </div>
-          `
-        },
-        errorComponent: {
-          template: '<div>Lỗi khi tải popup</div>'
-        },
-        delay: 200,
-        timeout: 3000
-      })
-    }
-
-    const closeModal = () => {
-      modalComponent.value = null
-    }
-
-    return {
-      modalComponent,
-      showModal,
-      closeModal
-    }
-  }
-}
-</script>
 
 <style scoped>
 .home {

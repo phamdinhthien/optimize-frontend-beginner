@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Nginx Compression - Tối ưu Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🚀 Nginx Compression Demo</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#overview">Tổng quan</a></li>
+                <li><a href="#comparison">So sánh</a></li>
+                <li><a href="#benefits">Lợi ích</a></li>
+                <li><a href="#implementation">Triển khai</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="overview" class="section">
+            <div class="container">
+                <h2>Tối ưu Frontend với Compression</h2>
+                <p class="lead">
+                    Compression là một kỹ thuật quan trọng để giảm kích thước file, 
+                    tăng tốc độ tải trang và cải thiện trải nghiệm người dùng.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>3.4x</h3>
+                        <p>Giảm kích thước HTML</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>3.5x</h3>
+                        <p>Giảm kích thước CSS</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>3.6x</h3>
+                        <p>Giảm kích thước JavaScript</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="section bg-light">
+            <div class="container">
+                <h2>So sánh Compression</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>❌ Không Compression</h3>
+                        <ul>
+                            <li>File size lớn</li>
+                            <li>Tải chậm</li>
+                            <li>Tốn băng thông</li>
+                            <li>UX kém</li>
+                        </ul>
+                        <a href="/no-compression/" class="btn btn-outline">Test No Compression</a>
+                    </div>
+                    <div class="comparison-card">
+                        <h3>✅ Có Compression</h3>
+                        <ul>
+                            <li>File size nhỏ</li>
+                            <li>Tải nhanh</li>
+                            <li>Tiết kiệm băng thông</li>
+                            <li>UX tốt</li>
+                        </ul>
+                        <a href="/" class="btn btn-primary">Test With Compression</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="section">
+            <div class="container">
+                <h2>Lợi ích của Compression</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <h3>Tăng tốc độ</h3>
+                        <p>Giảm thời gian tải trang, cải thiện Core Web Vitals và SEO ranking.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💾</div>
+                        <h3>Tiết kiệm băng thông</h3>
+                        <p>Giảm data transfer, tiết kiệm chi phí hosting và cải thiện performance.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📱</div>
+                        <h3>Mobile-friendly</h3>
+                        <p>Đặc biệt hiệu quả cho mobile users với kết nối chậm.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🌍</div>
+                        <h3>Global reach</h3>
+                        <p>Cải thiện trải nghiệm cho users ở xa server location.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="implementation" class="section bg-dark">
+            <div class="container">
+                <h2>Cách triển khai</h2>
+                <div class="implementation-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h3>Cấu hình Nginx</h3>
+                            <p>Enable gzip compression trong nginx.conf</p>
+                            <pre><code>gzip on;
+gzip_comp_level 6;
+gzip_types text/plain text/css application/javascript;</code></pre>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h3>Test compression</h3>
+                            <p>Sử dụng curl để kiểm tra compression</p>
+                            <pre><code>curl -H "Accept-Encoding: gzip" -v http://localhost:8080/</code></pre>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h3>Monitor performance</h3>
+                            <p>Theo dõi compression ratio và performance metrics</p>
+                            <pre><code># Check compression ratio in headers
+X-Compression-Status: 2.5</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Frontend Optimization Demo. Made with ❤️ for learning.</p>
+            <div class="footer-links">
+                <a href="#overview">Tổng quan</a>
+                <a href="#comparison">So sánh</a>
+                <a href="#benefits">Lợi ích</a>
+                <a href="#implementation">Triển khai</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

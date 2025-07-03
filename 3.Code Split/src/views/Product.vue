@@ -40,8 +40,7 @@
 
 <script>
 import { ref, defineAsyncComponent } from 'vue';
-const ProductModal = defineAsyncComponent(() => import('../components/ProductModal.vue'));
-// import ProductModal from '../components/ProductModal.vue';
+const ProductModal = defineAsyncComponent(() => import('@/components/ProductModal.vue'));
 
 export default {
   name: 'Product',
@@ -79,6 +78,8 @@ export default {
     ])
 
     const loadProductModal = () => {
+      debugger
+      console.log('🚀 Đang tải component ProductModal...')
       // Hiển thị modal - component sẽ được lazy load tự động
       showModal.value = true
     }

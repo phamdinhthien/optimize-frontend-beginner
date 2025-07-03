@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏷️ Native Lazy Loading Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏷️ Native Lazy Loading Demo</h1>
+            <p class="subtitle">Sử dụng thuộc tính loading="lazy" của HTML5</p>
+        </header>
+
+        <nav>
+            <a href="index.html" class="nav-back">← Quay lại trang chủ</a>
+        </nav>
+
+        <div class="browser-info">
+            <h3>🌐 Browser Support</h3>
+            <p id="browser-support-status"></p>
+        </div>
+
+        <div class="intro">
+            <h2>📚 Giới thiệu Native Lazy Loading</h2>
+            <p>
+                <strong>Native Lazy Loading</strong> là tính năng built-in của browser, chỉ cần thêm 
+                <code>loading="lazy"</code> vào thẻ <code>&lt;img&gt;</code>.
+            </p>
+            <p>
+                Browser sẽ tự động trì hoãn việc tải hình ảnh cho đến khi chúng gần vào viewport.
+            </p>
+        </div>
+
+        <div class="controls">
+            <h3>🎛️ Điều khiển Demo</h3>
+            <button class="btn btn-primary" onclick="toggleLazyLoading()">
+                <span id="toggle-text">Tắt Lazy Loading</span>
+            </button>
+            <button class="btn btn-secondary" onclick="reloadPage()">
+                🔄 Reload Trang
+            </button>
+            <button class="btn btn-success" onclick="scrollToTop()">
+                ⬆️ Scroll lên đầu
+            </button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="images-loaded">0</span>
+                <span class="stat-label">Ảnh đã load</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="total-images">20</span>
+                <span class="stat-label">Tổng số ảnh</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="network-saved">0</span>
+                <span class="stat-label">Network requests tiết kiệm</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="lazy-status">ON</span>
+                <span class="stat-label">Lazy Loading</span>
+            </div>
+        </div>
+
+        <div class="demo-info">
+            <h3>🔍 Hướng dẫn Test</h3>
+            <ol>
+                <li><strong>Mở DevTools</strong> (F12) → Tab <strong>Network</strong></li>
+                <li><strong>Reload trang</strong> để clear cache</li>
+                <li><strong>Quan sát</strong>: Chỉ có vài ảnh đầu được load</li>
+                <li><strong>Scroll xuống</strong> để thấy ảnh load từng batch</li>
+                <li><strong>Toggle</strong> Lazy Loading để so sánh</li>
+            </ol>
+        </div>
+
+        <div class="image-gallery" id="image-gallery">
+            <!-- Images sẽ được generate bằng JavaScript -->
+        </div>
+    </div>
+
+    <script src="native-lazy.js"></script>
+</body>
+</html>

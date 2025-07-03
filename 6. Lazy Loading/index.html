@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖼️ Lazy Loading Images Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖼️ Lazy Loading Images Demo</h1>
+            <p class="subtitle">So sánh 2 phương pháp lazy loading images</p>
+        </header>
+
+        <main>
+            <div class="intro">
+                <h2>📚 Giới thiệu về Lazy Loading</h2>
+                <p>
+                    <strong>Lazy Loading</strong> là kỹ thuật trì hoãn việc tải hình ảnh cho đến khi chúng thực sự cần thiết 
+                    (khi user scroll đến vùng hiển thị). Điều này giúp:
+                </p>
+                <ul>
+                    <li>⚡ Giảm thời gian tải trang ban đầu</li>
+                    <li>💾 Tiết kiệm băng thông</li>
+                    <li>📱 Cải thiện trải nghiệm trên mobile</li>
+                    <li>🚀 Tăng Core Web Vitals scores</li>
+                </ul>
+            </div>
+
+            <div class="demos">
+                <h2>🎯 Chọn Demo để Test</h2>
+                
+                <div class="demo-cards">
+                    <div class="demo-card">
+                        <div class="demo-icon">🏷️</div>
+                        <h3>Native Lazy Loading</h3>
+                        <p>Sử dụng thuộc tính <code>loading="lazy"</code> của HTML5</p>
+                        
+                        <div class="features">
+                            <h4>✅ Ưu điểm:</h4>
+                            <ul>
+                                <li>Đơn giản, không cần JavaScript</li>
+                                <li>Browser tự quyết định</li>
+                            </ul>
+                            
+                            <h4>❌ Nhược điểm:</h4>
+                            <ul>
+                                <li>Khó control loading behavior</li>
+                                <li>Không có Custom animations/Effects</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="native-lazy.html" class="demo-btn">
+                            🚀 Xem Demo Native
+                        </a>
+                    </div>
+
+                    <div class="demo-card">
+                        <div class="demo-icon">🔍</div>
+                        <h3>Intersection Observer</h3>
+                        <p>Sử dụng JavaScript Intersection Observer API</p>
+                        
+                        <div class="features">
+                            <h4>✅ Ưu điểm:</h4>
+                            <ul>
+                                <li>Full control loading behavior</li>
+                                <li>Xử lý Custom animations/Effects</li>
+                            </ul>
+                            
+                            <h4>❌ Nhược điểm:</h4>
+                            <ul>
+                                <li>Phức tạp hơn</li>
+                                <li>Cần JavaScript, Tự implement logic</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="intersection-observer.html" class="demo-btn">
+                            🔥 Xem Demo Observer
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison">
+                <h2>📊 So sánh chi tiết</h2>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tiêu chí</th>
+                                <th>Native Lazy</th>
+                                <th>Intersection Observer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Độ phức tạp</strong></td>
+                                <td>🟢 Rất đơn giản</td>
+                                <td>🟡 Trung bình</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Customization</strong></td>
+                                <td>🔴 Rất hạn chế</td>
+                                <td>🟢 Hoàn toàn tùy chỉnh</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Performance</strong></td>
+                                <td>🟢 Tối ưu sẵn</td>
+                                <td>🟡 Phụ thuộc implementation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Loading animations</strong></td>
+                                <td>🔴 Không có</td>
+                                <td>🟢 Custom được</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error handling</strong></td>
+                                <td>🟡 Basic</td>
+                                <td>🟢 Advanced</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                💡 <strong>Khuyến nghị:</strong> 
+                Sử dụng Native Lazy Loading cho projects đơn giản, 
+                Intersection Observer cho projects cần customization cao.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

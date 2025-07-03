@@ -5,13 +5,13 @@ const routes = [
     path: '/',
     name: 'Home',
     // Lazy loading - Code splitting cho route Home
-    component: () => import('../views/Home.vue')
+    component: () => import('@/views/Home.vue')
   },
   {
     path: '/product',
     name: 'Product',
     // Lazy loading - Code splitting cho route Product
-    component: () => import('../views/Product.vue')
+    component: () => import('@/views/Product.vue')
   }
 ]
 
