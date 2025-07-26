@@ -1,0 +1,17 @@
+{
+  "name": "vue2-demo",
+  "version": "1.0.0",
+  "description": "Simple Vue 2 Demo App",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.5.15",
+    "vue-template-compiler": "^2.6.14"
+  }
+}

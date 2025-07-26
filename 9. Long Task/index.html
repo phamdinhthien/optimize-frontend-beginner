@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long Task Optimization Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .tab.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .counter {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #007bff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #28a745;
+            transition: width 0.3s;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Long Task Optimization Demo</h1>
+    
+    <div class="tabs">
+        <button class="tab active" data-tab="unoptimized">Unoptimized</button>
+        <button class="tab" data-tab="worker">Web Worker</button>
+        <button class="tab" data-tab="split">Task Splitting</button>
+    </div>
+
+    <div class="metrics">
+        <div class="metric">
+            <div>Task Duration</div>
+            <div id="duration">0ms</div>
+        </div>
+        <div class="metric">
+            <div>Status</div>
+            <div id="status">Ready</div>
+        </div>
+    </div>
+
+    <div class="tab-content active" id="unoptimized">
+        <h2>Unoptimized Version</h2>
+        <p>This version will block the UI while processing.</p>
+        <button id="run-unoptimized">Process Data</button>
+        <div class="progress-bar">
+            <div class="progress" id="progress-unoptimized"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="worker">
+        <h2>Web Worker Version</h2>
+        <p>This version uses a Web Worker to avoid blocking the UI.</p>
+        <button id="run-worker">Process Data</button>
+        <div class="progress-bar">
+            <div class="progress" id="progress-worker"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="split">
+        <h2>Task Splitting Version</h2>
+        <p>This version splits the task into smaller chunks.</p>
+        <button id="run-split">Process Data</button>
+        <div class="progress-bar">
+            <div class="progress" id="progress-split"></div>
+        </div>
+    </div>
+
+    <script src="bad.js"></script>
+    <script src="split.js"></script>
+    <script>
+        // Tab switching logic
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
