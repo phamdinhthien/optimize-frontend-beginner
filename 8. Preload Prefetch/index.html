@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preload vs Prefetch Demo</title>
+    
+    <link rel="preload" as="image" href="http://localhost:3000/image_1.jpg">
+    <link rel="prefetch" as="image" href="http://localhost:3000/image_2.jpg">
+    <link rel="stylesheet" href="http://localhost:3000/style.css">
+</head>
+<body>
+    <div class="explanation">
+        <h2>Preload vs Prefetch Demo</h2>
+        <p><strong>Preload:</strong> Image 1 is preloaded because we need it immediately (check network tab)</p>
+        <p><strong>Prefetch:</strong> Image 2 is prefetched because we might need it later (check network tab)</p>
+    </div>
+
+    <div class="instructions">
+        <h3>How to test:</h3>
+        <ol>
+            <li>Open DevTools (F12) and go to Network tab</li>
+            <li>Clear the network log (🚫)</li>
+            <li>Refresh the page</li>
+            <li>Observe: First image loads with high priority (preload)</li>
+            <li>Second image loads with low priority (prefetch)</li>
+            <li>Click the button below to switch images</li>
+        </ol>
+    </div>
+
+    <div id="section1" class="container"></div>
+    <div id="section2" class="container"></div>
+
+    <button onclick="toggleImages()">Toggle Images</button>
+
+    <script>
+        function toggleImages() {
+            const section1 = document.getElementById('section1');
+            const section2 = document.getElementById('section2');
+
+            if (section1.style.display === 'none') {
+                section1.style.display = 'block';
+                section2.style.display = 'none';
+            } else {
+                section1.style.display = 'none';
+                section2.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
