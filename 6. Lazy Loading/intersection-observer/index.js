@@ -77,7 +77,7 @@ function generateImages() {
 function createImageItem(index) {
     const imageItem = document.createElement('div');
     imageItem.className = 'image-item';
-    imageItem.dataset.index = index;
+    imageItem.dataset.index = index;    
     
     const placeholder = document.createElement('div');
     placeholder.className = 'placeholder';
@@ -122,6 +122,8 @@ function loadImage(placeholder) {
     updateImageStatus(imageItem, 'loading');
     
     const tempImg = new Image();
+
+    tempImg.src = placeholder.dataset.src;
     
     tempImg.onload = function() {
         img.src = tempImg.src;
@@ -135,8 +137,6 @@ function loadImage(placeholder) {
     tempImg.onerror = function() {
         updateImageStatus(imageItem, 'error');
     };
-    
-    tempImg.src = placeholder.dataset.src;
 }
 
 function updateImageStatus(imageItem, status) {

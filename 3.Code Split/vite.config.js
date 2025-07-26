@@ -1,18 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { visualizer } from 'rollup-plugin-visualizer'
 import path from 'path'
+import { ViteMinifyPlugin } from 'vite-plugin-minify' 
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    visualizer({
-      filename: 'dist/stats.html',
-      open: false,
-      gzipSize: true,
-      brotliSize: true,
-    })
+    ViteMinifyPlugin({}),
   ],
   resolve: {
     alias: {

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏷️ Native Lazy Loading Demo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>🔍 Intersection Observer Lazy Loading Demo</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🏷️ Native Lazy Loading Demo</h1>
-            <p class="subtitle">Sử dụng thuộc tính loading="lazy" của HTML5</p>
+            <h1>🔍 Intersection Observer Demo</h1>
+            <p class="subtitle">Lazy Loading sử dụng JavaScript Intersection Observer API</p>
         </header>
 
         <nav>
@@ -23,13 +23,13 @@
         </div>
 
         <div class="intro">
-            <h2>📚 Giới thiệu Native Lazy Loading</h2>
+            <h2>📚 Giới thiệu Intersection Observer</h2>
             <p>
-                <strong>Native Lazy Loading</strong> là tính năng built-in của browser, chỉ cần thêm 
-                <code>loading="lazy"</code> vào thẻ <code>&lt;img&gt;</code>.
+                <strong>Intersection Observer API</strong> cho phép quan sát khi một element 
+                vào/ra khỏi viewport hoặc intersect với element khác.
             </p>
             <p>
-                Browser sẽ tự động trì hoãn việc tải hình ảnh cho đến khi chúng gần vào viewport.
+                Đây là cách linh hoạt và mạnh mẽ để implement lazy loading với full control.
             </p>
         </div>
 
@@ -44,6 +44,9 @@
             <button class="btn btn-success" onclick="scrollToTop()">
                 ⬆️ Scroll lên đầu
             </button>
+            <button class="btn btn-primary" onclick="loadAllImages()">
+                ⚡ Load tất cả ảnh
+            </button>
         </div>
 
         <div class="stats">
@@ -56,7 +59,7 @@
                 <span class="stat-label">Tổng số ảnh</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number" id="network-saved">0</span>
+                <span class="stat-number" id="network-saved">20</span>
                 <span class="stat-label">Network requests tiết kiệm</span>
             </div>
             <div class="stat-item">
@@ -65,13 +68,35 @@
             </div>
         </div>
 
+        <div class="observer-config">
+            <h3>⚙️ Cấu hình Observer</h3>
+            <div class="config-row">
+                <label for="root-margin">Root Margin:</label>
+                <select id="root-margin" onchange="updateObserverConfig()">
+                    <option value="0px">0px (chỉ khi vào viewport)</option>
+                    <option value="50px" selected>50px (trước 50px)</option>
+                    <option value="100px">100px (trước 100px)</option>
+                    <option value="200px">200px (trước 200px)</option>
+                </select>
+            </div>
+            <div class="config-row">
+                <label for="threshold">Threshold:</label>
+                <select id="threshold" onchange="updateObserverConfig()">
+                    <option value="0" selected>0 (ngay khi touch viewport)</option>
+                    <option value="0.1">0.1 (10% visible)</option>
+                    <option value="0.5">0.5 (50% visible)</option>
+                    <option value="1">1 (100% visible)</option>
+                </select>
+            </div>
+        </div>
+
         <div class="demo-info">
             <h3>🔍 Hướng dẫn Test</h3>
             <ol>
                 <li><strong>Mở DevTools</strong> (F12) → Tab <strong>Network</strong></li>
                 <li><strong>Reload trang</strong> để clear cache</li>
-                <li><strong>Quan sát</strong>: Chỉ có vài ảnh đầu được load</li>
-                <li><strong>Scroll xuống</strong> để thấy ảnh load từng batch</li>
+                <li><strong>Scroll xuống</strong> để thấy ảnh load với animation</li>
+                <li><strong>Thay đổi cấu hình</strong> Observer để test behavior khác nhau</li>
                 <li><strong>Toggle</strong> Lazy Loading để so sánh</li>
             </ol>
         </div>
@@ -81,6 +106,6 @@
         </div>
     </div>
 
-    <script src="native-lazy.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

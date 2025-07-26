@@ -1,19 +1,19 @@
-// Create a large array of random numbers
+// Generate numbers from 1 to N
 function generateData(size) {
-    return Array.from({ length: size }, () => Math.random());
+    return Array.from({ length: size }, (_, i) => i + 1);
 }
 
-// Bubble sort implementation (intentionally inefficient)
-function bubbleSort(arr) {
-    const len = arr.length;
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-            }
-        }
+// Calculate sum of squares (intentionally inefficient with delays)
+function calculateSquares(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        // Add artificial delay to simulate heavy computation
+        const start = performance.now();
+        while (performance.now() - start < 0.1) {} // 0.1ms delay per item
+
+        sum += arr[i] * arr[i];
     }
-    return arr;
+    return sum;
 }
 
 // Unoptimized processing function
@@ -23,20 +23,20 @@ function processDataUnoptimized(size = 50000) {
     const progressEl = document.getElementById('progress-unoptimized');
     const button = document.getElementById('run-unoptimized');
 
-    statusEl.textContent = 'Processing...';
+    statusEl.textContent = 'Calculating squares...';
     button.disabled = true;
     progressEl.style.width = '0%';
 
     const startTime = performance.now();
     
-    // Generate and sort data (will block UI)
+    // Calculate sum of squares (will block UI)
     const data = generateData(size);
-    bubbleSort(data);
+    const result = calculateSquares(data);
+    statusEl.textContent = `Sum: ${result}`;
     
     const duration = performance.now() - startTime;
     
     // Update UI after processing
-    statusEl.textContent = 'Completed';
     durationEl.textContent = `${Math.round(duration)}ms`;
     progressEl.style.width = '100%';
     button.disabled = false;

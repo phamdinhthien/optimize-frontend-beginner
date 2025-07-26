@@ -1,10 +1,8 @@
-// File chứa nhiều hàm toán học - chỉ một số được sử dụng
-console.log('Module math.js được load');
-document.body.style.background = 'red';
+
 /**
  * Phép cộng - ĐƯỢC SỬ DỤNG
  */
-export function add(a, b) {
+function add(a, b) {
     console.log(`Thực hiện phép cộng: ${a} + ${b}`);
     return a + b;
 }
@@ -12,7 +10,7 @@ export function add(a, b) {
 /**
  * Phép trừ - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function subtract(a, b) {
+function subtract(a, b) {
     console.log(`Thực hiện phép trừ: ${a} - ${b}`);
     return a - b;
 }
@@ -20,7 +18,7 @@ export function subtract(a, b) {
 /**
  * Phép nhân - ĐƯỢC SỬ DỤNG
  */
-export function multiply(a, b) {
+function multiply(a, b) {
     console.log(`Thực hiện phép nhân: ${a} × ${b}`);
     return a * b;
 }
@@ -28,7 +26,7 @@ export function multiply(a, b) {
 /**
  * Phép chia - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function divide(a, b) {
+function divide(a, b) {
     console.log(`Thực hiện phép chia: ${a} ÷ ${b}`);
     if (b === 0) {
         throw new Error('Không thể chia cho 0');
@@ -39,7 +37,7 @@ export function divide(a, b) {
 /**
  * Phép lũy thừa - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function power(a, b) {
+function power(a, b) {
     console.log(`Thực hiện phép lũy thừa: ${a} ^ ${b}`);
     return Math.pow(a, b);
 }
@@ -47,7 +45,7 @@ export function power(a, b) {
 /**
  * Căn bậc hai - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function sqrt(a) {
+function sqrt(a) {
     console.log(`Thực hiện căn bậc hai: √${a}`);
     if (a < 0) {
         throw new Error('Không thể tính căn bậc hai của số âm');
@@ -58,7 +56,7 @@ export function sqrt(a) {
 /**
  * Giai thừa - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function factorial(n) {
+function factorial(n) {
     console.log(`Thực hiện giai thừa: ${n}!`);
     if (n < 0) {
         throw new Error('Giai thừa không xác định cho số âm');
@@ -72,7 +70,7 @@ export function factorial(n) {
 /**
  * Ước chung lớn nhất - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function gcd(a, b) {
+function gcd(a, b) {
     console.log(`Tìm ước chung lớn nhất của ${a} và ${b}`);
     while (b !== 0) {
         let temp = b;
@@ -85,7 +83,7 @@ export function gcd(a, b) {
 /**
  * Bội chung nhỏ nhất - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function lcm(a, b) {
+function lcm(a, b) {
     console.log(`Tìm bội chung nhỏ nhất của ${a} và ${b}`);
     return (a * b) / gcd(a, b);
 }
@@ -93,7 +91,7 @@ export function lcm(a, b) {
 /**
  * Kiểm tra số nguyên tố - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function isPrime(n) {
+function isPrime(n) {
     console.log(`Kiểm tra ${n} có phải số nguyên tố không`);
     if (n <= 1) return false;
     if (n <= 3) return true;
@@ -110,7 +108,7 @@ export function isPrime(n) {
 /**
  * Tính tổng các chữ số - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function digitSum(n) {
+function digitSum(n) {
     console.log(`Tính tổng các chữ số của ${n}`);
     return n.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
 }
@@ -118,7 +116,7 @@ export function digitSum(n) {
 /**
  * Đảo ngược số - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function reverseNumber(n) {
+function reverseNumber(n) {
     console.log(`Đảo ngược số ${n}`);
     return parseInt(n.toString().split('').reverse().join(''));
 }
@@ -126,7 +124,7 @@ export function reverseNumber(n) {
 /**
  * Tính phần trăm - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function percentage(value, total) {
+function percentage(value, total) {
     console.log(`Tính phần trăm: ${value} trong ${total}`);
     return (value / total) * 100;
 }
@@ -134,7 +132,7 @@ export function percentage(value, total) {
 /**
  * Làm tròn đến n chữ số thập phân - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function roundTo(number, decimals) {
+function roundTo(number, decimals) {
     console.log(`Làm tròn ${number} đến ${decimals} chữ số thập phân`);
     return Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
@@ -142,13 +140,12 @@ export function roundTo(number, decimals) {
 /**
  * Tính trung bình cộng - KHÔNG ĐƯỢC SỬ DỤNG
  */
-export function average(numbers) {
+function average(numbers) {
     console.log(`Tính trung bình cộng của [${numbers.join(', ')}]`);
     return numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
 }
 
-// Export tất cả hàm để có thể import theo cách khác
-export default {
+export {
     add,
     subtract,
     multiply,

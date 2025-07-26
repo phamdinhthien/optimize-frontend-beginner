@@ -115,7 +115,7 @@
 
     <div class="tab-content active" id="unoptimized">
         <h2>Unoptimized Version</h2>
-        <p>This version will block the UI while processing.</p>
+        <p>This version calculates sum of squares from 1 to N directly on the main thread. Notice how the counter animation freezes during processing.</p>
         <button id="run-unoptimized">Process Data</button>
         <div class="progress-bar">
             <div class="progress" id="progress-unoptimized"></div>
@@ -124,7 +124,7 @@
 
     <div class="tab-content" id="worker">
         <h2>Web Worker Version</h2>
-        <p>This version uses a Web Worker to avoid blocking the UI.</p>
+        <p>This version moves the calculation to a background thread using Web Worker. The UI remains responsive during processing.</p>
         <button id="run-worker">Process Data</button>
         <div class="progress-bar">
             <div class="progress" id="progress-worker"></div>
@@ -133,7 +133,7 @@
 
     <div class="tab-content" id="split">
         <h2>Task Splitting Version</h2>
-        <p>This version splits the task into smaller chunks.</p>
+        <p>This version breaks the calculation into smaller chunks (100 items each) and uses requestAnimationFrame to maintain UI responsiveness.</p>
         <button id="run-split">Process Data</button>
         <div class="progress-bar">
             <div class="progress" id="progress-split"></div>

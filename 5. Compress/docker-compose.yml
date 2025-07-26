@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   nginx-compression-demo:
-    image: nginx:alpine
-    # image: fholzer/nginx-brotli
+    # image: nginx:alpine
+    image: fholzer/nginx-brotli
     container_name: nginx-compression-demo
     ports:
       - "8080:80"

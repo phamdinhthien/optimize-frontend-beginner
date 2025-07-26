@@ -1,6 +1,6 @@
-// Create a large array of random numbers (shared function)
+// Generate numbers from 1 to N (shared function)
 function generateData(size) {
-    return Array.from({ length: size }, () => Math.random());
+    return Array.from({ length: size }, (_, i) => i + 1);
 }
 
 // Web Worker Version
@@ -15,7 +15,7 @@ class WorkerVersion {
             if (e.data.type === 'progress') {
                 document.getElementById('progress-worker').style.width = `${e.data.progress}%`;
             } else if (e.data.type === 'complete') {
-                this.onComplete(e.data.duration);
+                this.onComplete(e.data.duration, e.data.result);
             }
         };
     }
@@ -25,7 +25,7 @@ class WorkerVersion {
         const progressEl = document.getElementById('progress-worker');
         const button = document.getElementById('run-worker');
 
-        statusEl.textContent = 'Processing in Worker...';
+        statusEl.textContent = 'Calculating squares in Worker...';
         button.disabled = true;
         progressEl.style.width = '0%';
 
@@ -36,13 +36,13 @@ class WorkerVersion {
         });
     }
 
-    onComplete(duration) {
+    onComplete(duration, result) {
         const statusEl = document.getElementById('status');
         const durationEl = document.getElementById('duration');
         const progressEl = document.getElementById('progress-worker');
         const button = document.getElementById('run-worker');
 
-        statusEl.textContent = 'Worker Completed';
+        statusEl.textContent = `Worker Sum: ${result}`;
         durationEl.textContent = `${Math.round(duration)}ms`;
         progressEl.style.width = '100%';
         button.disabled = false;
@@ -52,10 +52,11 @@ class WorkerVersion {
 // Task Splitting Version
 class SplitVersion {
     constructor() {
-        this.chunkSize = 1000; // Process 1000 items at a time
+        this.chunkSize = 50000; // Process 100 items at a time
         this.data = [];
         this.currentIndex = 0;
         this.startTime = 0;
+        this.sum = 0;
     }
 
     process(size = 50000) {
@@ -63,13 +64,14 @@ class SplitVersion {
         const button = document.getElementById('run-split');
         const progressEl = document.getElementById('progress-split');
 
-        statusEl.textContent = 'Processing in Chunks...';
+        statusEl.textContent = 'Calculating squares in chunks...';
         button.disabled = true;
         progressEl.style.width = '0%';
 
         this.data = generateData(size);
         this.currentIndex = 0;
         this.startTime = performance.now();
+        this.sum = 0;
 
         // Schedule the first chunk
         requestAnimationFrame(() => this.processChunk());
@@ -79,8 +81,10 @@ class SplitVersion {
         const endIndex = Math.min(this.currentIndex + this.chunkSize, this.data.length);
         const chunk = this.data.slice(this.currentIndex, endIndex);
 
-        // Process this chunk
-        this.sortChunk(chunk, this.currentIndex);
+        // Calculate squares for this chunk
+        for (let i = 0; i < chunk.length; i++) {
+            this.sum += chunk[i] * chunk[i];
+        }
         
         // Update progress
         const progress = (endIndex / this.data.length) * 100;
@@ -96,29 +100,13 @@ class SplitVersion {
         }
     }
 
-    sortChunk(chunk, startIndex) {
-        // Sort the chunk
-        for (let i = 0; i < chunk.length; i++) {
-            for (let j = 0; j < chunk.length - i - 1; j++) {
-                if (chunk[j] > chunk[j + 1]) {
-                    [chunk[j], chunk[j + 1]] = [chunk[j + 1], chunk[j]];
-                }
-            }
-        }
-        
-        // Put sorted chunk back into main array
-        for (let i = 0; i < chunk.length; i++) {
-            this.data[startIndex + i] = chunk[i];
-        }
-    }
-
     onComplete() {
         const duration = performance.now() - this.startTime;
         const statusEl = document.getElementById('status');
         const durationEl = document.getElementById('duration');
         const button = document.getElementById('run-split');
 
-        statusEl.textContent = 'Split Tasks Completed';
+        statusEl.textContent = `Split Tasks Sum: ${this.sum}`;
         durationEl.textContent = `${Math.round(duration)}ms`;
         button.disabled = false;
     }

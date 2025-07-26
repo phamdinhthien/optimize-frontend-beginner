@@ -9,12 +9,30 @@ const PORT = 3000;
 app.get('/style.css', (req, res) => {
     setTimeout(() => {
         res.sendFile(path.join(__dirname, 'public', 'style.css'));
-    }, 3000);
+    }, 0);
 });
 
 app.get('/script.js', (req, res) => {
     setTimeout(() => {
         res.sendFile(path.join(__dirname, 'public', 'script.js'));
+    }, 3000);
+});
+
+app.get('/script1.js', (req, res) => {
+    setTimeout(() => {
+        res.sendFile(path.join(__dirname, 'public', 'script1.js'));
+    }, 3000);
+});
+
+app.get('/script2.js', (req, res) => {
+    setTimeout(() => {
+        res.sendFile(path.join(__dirname, 'public', 'script2.js'));
+    }, 3000);
+});
+
+app.get('/script3.js', (req, res) => {
+    setTimeout(() => {
+        res.sendFile(path.join(__dirname, 'public', 'script3.js'));
     }, 3000);
 });
 
