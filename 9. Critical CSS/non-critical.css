@@ -1,0 +1,77 @@
+/* Non-Critical CSS - Print styles */
+
+@media print {
+    /* Reset background colors and shadows for better printing */
+    body {
+        background: white;
+        color: black;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Hide navigation and footer when printing */
+    nav,
+    footer {
+        display: none !important;
+    }
+
+    /* Remove shadows and borders for cleaner print */
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+        margin: 0 0 20px 0;
+    }
+
+    /* Enhance typography for print */
+    h1 {
+        font-size: 24pt;
+        margin-bottom: 10mm;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-bottom: 5mm;
+    }
+
+    p {
+        font-size: 12pt;
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Show print-only content */
+    .print-only {
+        display: block;
+        margin: 20mm 0;
+        padding: 5mm;
+        border: 1px solid #999;
+        background: #f5f5f5;
+    }
+
+    /* Add page breaks */
+    main {
+        page-break-before: always;
+    }
+
+    .card {
+        page-break-inside: avoid;
+    }
+
+    /* Print URLs after links */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        color: #666;
+    }
+
+    /* QR code for digital version - only visible in print */
+    .print-only:after {
+        content: "Scan for digital version";
+        display: block;
+        text-align: center;
+        margin-top: 10mm;
+        font-style: italic;
+        color: #666;
+    }
+}

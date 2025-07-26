@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critical vs Non-Critical CSS Demo</title>
+    
+    <!-- Critical CSS - loads immediately -->
+    <link rel="stylesheet" href="critical.css">
+    
+    <!-- Non-Critical CSS - loads with lower priority -->
+    <link rel="stylesheet" href="non-critical.css" media="print">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Critical vs Non-Critical CSS Demo</h1>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <article class="card">
+            <h2>What is Critical CSS?</h2>
+            <p>Critical CSS includes styles necessary for rendering above-the-fold content. These styles load immediately to prevent layout shifts and improve First Contentful Paint (FCP).</p>
+        </article>
+
+        <article class="card">
+            <h2>What is Non-Critical CSS?</h2>
+            <p>Non-critical CSS includes styles that aren't needed for initial render, like print styles or below-the-fold content styling. These can be loaded with lower priority.</p>
+        </article>
+
+        <!-- This section demonstrates print-only content -->
+        <div class="print-only">
+            <h3>Print Version Information</h3>
+            <p>Document generated on <span class="print-date"></span></p>
+            <p>For internal use only</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Critical CSS Demo</p>
+    </footer>
+
+    <script>
+        // Update print date
+        document.querySelector('.print-date').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>

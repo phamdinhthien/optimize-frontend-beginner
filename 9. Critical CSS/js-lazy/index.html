@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy Loading Non-Critical CSS with JavaScript</title>
+    
+    <!-- Critical CSS - loads immediately -->
+    <link rel="stylesheet" href="critical.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Lazy Loading Non-Critical CSS</h1>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cards">
+            <div class="card" data-animation="fade-in">
+                <h2>Product 1</h2>
+                <p>This card will animate after non-critical CSS loads.</p>
+                <button class="hover-effect">Learn More</button>
+            </div>
+
+            <div class="card" data-animation="slide-up">
+                <h2>Product 2</h2>
+                <p>This card will animate after non-critical CSS loads.</p>
+                <button class="hover-effect">Learn More</button>
+            </div>
+
+            <div class="card" data-animation="fade-in">
+                <h2>Product 3</h2>
+                <p>This card will animate after non-critical CSS loads.</p>
+                <button class="hover-effect">Learn More</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Check the Network tab to see how CSS files load!</p>
+    </footer>
+
+    <script>
+        // Function to load CSS file
+        function loadCSS(href) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            document.head.appendChild(link);
+        }
+
+        window.addEventListener('load', () => {
+            loadCSS('non-critical.css');
+        });
+    </script>
+</body>
+</html>
