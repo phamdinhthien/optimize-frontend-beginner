@@ -8,7 +8,7 @@ const PORT = 3000;
 app.get('/style.css', (req, res) => {
     setTimeout(() => {
         res.sendFile(path.join(__dirname, 'public', 'style.css'));
-    }, 3000);
+    }, 1000);
 });
 
 // Cache settings for preloaded image (1 hour)

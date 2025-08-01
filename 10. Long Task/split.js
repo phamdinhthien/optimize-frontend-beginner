@@ -52,7 +52,7 @@ class WorkerVersion {
 // Task Splitting Version
 class SplitVersion {
     constructor() {
-        this.chunkSize = 50000; // Process 100 items at a time
+        this.chunkSize = 100; // Process 100 items at a time
         this.data = [];
         this.currentIndex = 0;
         this.startTime = 0;
@@ -72,9 +72,7 @@ class SplitVersion {
         this.currentIndex = 0;
         this.startTime = performance.now();
         this.sum = 0;
-
-        // Schedule the first chunk
-        requestAnimationFrame(() => this.processChunk());
+        this.processChunk();
     }
 
     processChunk() {
@@ -93,8 +91,7 @@ class SplitVersion {
         // Move to next chunk or complete
         this.currentIndex = endIndex;
         if (this.currentIndex < this.data.length) {
-            // Schedule next chunk with requestAnimationFrame to allow UI updates
-            requestAnimationFrame(() => this.processChunk());
+            setTimeout(() => this.processChunk(), 0);
         } else {
             this.onComplete();
         }
